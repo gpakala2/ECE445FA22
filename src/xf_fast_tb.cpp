@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
                 keypoints2.push_back(key);
             }
             int value3 = (int) key3_img.at<uchar>(i, j); 
-            if (value2==255){
+            if (value3==255){
                 cv::KeyPoint key(j, i, 1); 
                 keypoints3.push_back(key);
             }
