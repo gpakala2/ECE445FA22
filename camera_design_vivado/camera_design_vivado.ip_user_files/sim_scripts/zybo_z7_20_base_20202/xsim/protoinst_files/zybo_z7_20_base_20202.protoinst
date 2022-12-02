@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"zybo_z7_20_base_20202": {
+			"proto_instances": {
+			}
+		}
+	}
+}

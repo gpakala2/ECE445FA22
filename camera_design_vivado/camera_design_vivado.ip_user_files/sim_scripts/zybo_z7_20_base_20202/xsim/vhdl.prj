@@ -1,0 +1,6 @@
+vhdl xil_defaultlib  \
+"../../../bd/zybo_z7_20_base_20202/ip/zybo_z7_20_base_20202_proc_sys_reset_0_0/sim/zybo_z7_20_base_20202_proc_sys_reset_0_0.vhd" \
+"../../../bd/zybo_z7_20_base_20202/ip/zybo_z7_20_base_20202_proc_sys_reset_0_1/sim/zybo_z7_20_base_20202_proc_sys_reset_0_1.vhd" \
+"../../../bd/zybo_z7_20_base_20202/ip/zybo_z7_20_base_20202_proc_sys_reset_1_0/sim/zybo_z7_20_base_20202_proc_sys_reset_1_0.vhd" \
+
+nosort

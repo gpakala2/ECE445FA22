@@ -1,0 +1,10 @@
+verilog xil_defaultlib --include "/tools/Xilinx/Vivado/2020.2/data/xilinx_vip/include" --include "../../../../camera_design_vivado.gen/sources_1/bd/zybo_z7_20_base_20202/ipshared/ec67/hdl" --include "../../../../camera_design_vivado.gen/sources_1/bd/zybo_z7_20_base_20202/ipshared/34f8/hdl" --include "../../../../camera_design_vivado.gen/sources_1/bd/zybo_z7_20_base_20202/ipshared/d0f7" \
+"../../../bd/zybo_z7_20_base_20202/ip/zybo_z7_20_base_20202_processing_system7_0_0/sim/zybo_z7_20_base_20202_processing_system7_0_0.v" \
+"../../../bd/zybo_z7_20_base_20202/ip/zybo_z7_20_base_20202_clk_wiz_0_0/zybo_z7_20_base_20202_clk_wiz_0_0_clk_wiz.v" \
+"../../../bd/zybo_z7_20_base_20202/ip/zybo_z7_20_base_20202_clk_wiz_0_0/zybo_z7_20_base_20202_clk_wiz_0_0.v" \
+"../../../bd/zybo_z7_20_base_20202/ip/zybo_z7_20_base_20202_xlconcat_0_0/sim/zybo_z7_20_base_20202_xlconcat_0_0.v" \
+"../../../bd/zybo_z7_20_base_20202/sim/zybo_z7_20_base_20202.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
