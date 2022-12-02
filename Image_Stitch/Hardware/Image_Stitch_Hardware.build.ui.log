@@ -1,0 +1,87 @@
+2022-12-02T10:50:40.63149900255-10:50:40 **** Incremental Build of configuration Hardware for project Image_Stitch ****
+000-make -j8 all 
+000-arm-linux-gnueabihf-g++ -std=c++0x -DVITIS_PLATFORM=zybo_gpio -D__USE_XOPEN2K8 -I/tools/Xilinx/Vivado/2020.2/include/ -I/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/xrt/ -O2 -g -Wall -c -fmessage-length=0 --sysroot=/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi -o "src/image_thresholding-host.o" "../src/image_thresholding-host.cpp"
+000-In file included from /tools/Xilinx/Vivado/2020.2/include/hls_half.h:44,
+000-                 from /tools/Xilinx/Vivado/2020.2/include/etc/ap_private.h:90,
+000-                 from /tools/Xilinx/Vivado/2020.2/include/ap_common.h:641,
+000-                 from /tools/Xilinx/Vivado/2020.2/include/ap_int.h:54,
+000-                 from ../src/image_thresholding-host.cpp:25:
+000/Image_Stitch/Hardware65-1-1#warning "Xilinx Floating Point Operator IP core does not provide simulation models for ARM architecture.  Automatically defining HLS_NO_XIL_FPO_LIB in order to avoid this library dependency, although bit-accurate simulation of some functions is no longer possible.  You can make this warning go away by adding this define yourself before including any other files." [-Wcpp]1-/tools/Xilinx/Vivado/2020.2/include/hls_fpo.h:65:2: warning: #warning "Xilinx Floating Point Operator IP core does not provide simulation models for ARM architecture.  Automatically defining HLS_NO_XIL_FPO_LIB in order to avoid this library dependency, although bit-accurate simulation of some functions is no longer possible.  You can make this warning go away by adding this define yourself before including any other files." [-Wcpp]
+000-   65 | #warning "Xilinx Floating Point Operator IP core does not provide simulation models for ARM architecture.  Automatically defining HLS_NO_XIL_FPO_LIB in order to avoid this library dependency, although bit-accurate simulation of some functions is no longer possible.  You can make this warning go away by adding this define yourself before including any other files."
+000-      |  ^~~~~~~
+000-../src/image_thresholding-host.cpp: In function 'int main(int, char**)':
+000/Image_Stitch/src/image_thresholding-host.cpp259-1-1no matching function for call to 'FAST(uchar*&, double (&)(cv::InputArray, cv::OutputArray, double, double, int), uchar*&, int&, int&)'268:../src/image_thresholding-host.cpp:259:68: error: no matching function for call to 'FAST(uchar*&, double (&)(cv::InputArray, cv::OutputArray, double, double, int), uchar*&, int&, int&)'
+000-  259 |    cv::FAST(in_image1.data, threshold, key1_img.data, height, width);
+000-      |                                                                    ^
+000-In file included from /media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d/features2d.hpp:48,
+000-                 from ../src/image_thresholding-host.cpp:12:
+000/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp422-1-1candidate: 'void cv::FAST(cv::InputArray, std::vector<cv::KeyPoint>&, int, bool)'0-/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp:422:17: note: candidate: 'void cv::FAST(cv::InputArray, std::vector<cv::KeyPoint>&, int, bool)'
+000-  422 | CV_EXPORTS void FAST( InputArray image, CV_OUT std::vector<KeyPoint>& keypoints,
+000-      |                 ^~~~
+000/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp422-1-1  candidate expects 4 arguments, 5 provided0-/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp:422:17: note:   candidate expects 4 arguments, 5 provided
+000/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp443-1-1candidate: 'void cv::FAST(cv::InputArray, std::vector<cv::KeyPoint>&, int, bool, int)'0-/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp:443:17: note: candidate: 'void cv::FAST(cv::InputArray, std::vector<cv::KeyPoint>&, int, bool, int)'
+000-  443 | CV_EXPORTS void FAST( InputArray image, CV_OUT std::vector<KeyPoint>& keypoints,
+000-      |                 ^~~~
+000/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp443-1-1  no known conversion for argument 1 from 'uchar*' {aka 'unsigned char*'} to 'cv::InputArray' {aka 'const cv::_InputArray&'}0-/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp:443:34: note:   no known conversion for argument 1 from 'uchar*' {aka 'unsigned char*'} to 'cv::InputArray' {aka 'const cv::_InputArray&'}
+000-  443 | CV_EXPORTS void FAST( InputArray image, CV_OUT std::vector<KeyPoint>& keypoints,
+000-      |                       ~~~~~~~~~~~^~~~~
+000/Image_Stitch/src/image_thresholding-host.cpp260-1-1no matching function for call to 'FAST(uchar*&, double (&)(cv::InputArray, cv::OutputArray, double, double, int), uchar*&, int&, int&)'268:../src/image_thresholding-host.cpp:260:68: error: no matching function for call to 'FAST(uchar*&, double (&)(cv::InputArray, cv::OutputArray, double, double, int), uchar*&, int&, int&)'
+000-  260 |    cv::FAST(in_image2.data, threshold, key2_img.data, height, width);
+000-      |                                                                    ^
+000-In file included from /media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d/features2d.hpp:48,
+000-                 from ../src/image_thresholding-host.cpp:12:
+000/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp422-1-1candidate: 'void cv::FAST(cv::InputArray, std::vector<cv::KeyPoint>&, int, bool)'0-/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp:422:17: note: candidate: 'void cv::FAST(cv::InputArray, std::vector<cv::KeyPoint>&, int, bool)'
+000-  422 | CV_EXPORTS void FAST( InputArray image, CV_OUT std::vector<KeyPoint>& keypoints,
+000-      |                 ^~~~
+000/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp422-1-1  candidate expects 4 arguments, 5 provided0-/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp:422:17: note:   candidate expects 4 arguments, 5 provided
+000/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp443-1-1candidate: 'void cv::FAST(cv::InputArray, std::vector<cv::KeyPoint>&, int, bool, int)'0-/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp:443:17: note: candidate: 'void cv::FAST(cv::InputArray, std::vector<cv::KeyPoint>&, int, bool, int)'
+000-  443 | CV_EXPORTS void FAST( InputArray image, CV_OUT std::vector<KeyPoint>& keypoints,
+000-      |                 ^~~~
+000/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp443-1-1  no known conversion for argument 1 from 'uchar*' {aka 'unsigned char*'} to 'cv::InputArray' {aka 'const cv::_InputArray&'}0-/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp:443:34: note:   no known conversion for argument 1 from 'uchar*' {aka 'unsigned char*'} to 'cv::InputArray' {aka 'const cv::_InputArray&'}
+000-  443 | CV_EXPORTS void FAST( InputArray image, CV_OUT std::vector<KeyPoint>& keypoints,
+000-      |                       ~~~~~~~~~~~^~~~~
+000/Image_Stitch/src/image_thresholding-host.cpp261-1-1no matching function for call to 'FAST(uchar*&, double (&)(cv::InputArray, cv::OutputArray, double, double, int), uchar*&, int&, int&)'268:../src/image_thresholding-host.cpp:261:68: error: no matching function for call to 'FAST(uchar*&, double (&)(cv::InputArray, cv::OutputArray, double, double, int), uchar*&, int&, int&)'
+000-  261 |    cv::FAST(in_image3.data, threshold, key3_img.data, height, width);
+000-      |                                                                    ^
+000-In file included from /media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d/features2d.hpp:48,
+000-                 from ../src/image_thresholding-host.cpp:12:
+000/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp422-1-1candidate: 'void cv::FAST(cv::InputArray, std::vector<cv::KeyPoint>&, int, bool)'0-/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp:422:17: note: candidate: 'void cv::FAST(cv::InputArray, std::vector<cv::KeyPoint>&, int, bool)'
+000-  422 | CV_EXPORTS void FAST( InputArray image, CV_OUT std::vector<KeyPoint>& keypoints,
+000-      |                 ^~~~
+000/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp422-1-1  candidate expects 4 arguments, 5 provided0-/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp:422:17: note:   candidate expects 4 arguments, 5 provided
+000/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp443-1-1candidate: 'void cv::FAST(cv::InputArray, std::vector<cv::KeyPoint>&, int, bool, int)'0-/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp:443:17: note: candidate: 'void cv::FAST(cv::InputArray, std::vector<cv::KeyPoint>&, int, bool, int)'
+000-  443 | CV_EXPORTS void FAST( InputArray image, CV_OUT std::vector<KeyPoint>& keypoints,
+000-      |                 ^~~~
+000/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp443-1-1  no known conversion for argument 1 from 'uchar*' {aka 'unsigned char*'} to 'cv::InputArray' {aka 'const cv::_InputArray&'}0-/media/cole/XilinxShare/camera_design_vivado/platform3/zybo_gpio/export/zybo_gpio/sw/zybo_gpio/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/opencv2/features2d.hpp:443:34: note:   no known conversion for argument 1 from 'uchar*' {aka 'unsigned char*'} to 'cv::InputArray' {aka 'const cv::_InputArray&'}
+000-  443 | CV_EXPORTS void FAST( InputArray image, CV_OUT std::vector<KeyPoint>& keypoints,
+000-      |                       ~~~~~~~~~~~^~~~~
+000/Image_Stitch/src/image_thresholding-host.cpp447-1-1comparison of integer expressions of different signedness: 'int' and 'std::vector<cv::DMatch>::size_type' {aka 'unsigned int'} [-Wsign-compare]1-../src/image_thresholding-host.cpp:447:19: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<cv::DMatch>::size_type' {aka 'unsigned int'} [-Wsign-compare]
+000-  447 | for (int i = 0; i < good_matches_l.size(); i++){
+000-      |                 ~~^~~~~~~~~~~~~~~~~~~~~~~
+000/Image_Stitch/src/image_thresholding-host.cpp452-1-1comparison of integer expressions of different signedness: 'int' and 'std::vector<cv::DMatch>::size_type' {aka 'unsigned int'} [-Wsign-compare]1-../src/image_thresholding-host.cpp:452:23: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<cv::DMatch>::size_type' {aka 'unsigned int'} [-Wsign-compare]
+000-  452 |     for (int i = 0; i < good_matches_r.size(); i++){
+000-      |                     ~~^~~~~~~~~~~~~~~~~~~~~~~
+000/Image_Stitch/src/image_thresholding-host.cpp482-1-1narrowing conversion of 'in_image1.cv::Mat::cols' from 'int' to 'double' [-Wnarrowing]1-../src/image_thresholding-host.cpp:482:44: warning: narrowing conversion of 'in_image1.cv::Mat::cols' from 'int' to 'double' [-Wnarrowing]
+000-  482 |   double translation[] = { 1, 0, in_image1.cols,
+000-      |                                  ~~~~~~~~~~^~~~
+000/Image_Stitch/src/image_thresholding-host.cpp483-1-1narrowing conversion of 'in_image1.cv::Mat::rows' from 'int' to 'double' [-Wnarrowing]1-../src/image_thresholding-host.cpp:483:45: warning: narrowing conversion of 'in_image1.cv::Mat::rows' from 'int' to 'double' [-Wnarrowing]
+000-  483 |                             0, 1, in_image1.rows,
+000-      |                                   ~~~~~~~~~~^~~~
+000/Image_Stitch/src/image_thresholding-host.cpp391-1-1unused variable 'tmp_good_matches' [-Wunused-variable]1-../src/image_thresholding-host.cpp:391:11: warning: unused variable 'tmp_good_matches' [-Wunused-variable]
+000-  391 |   int16_t tmp_good_matches[nkp1];
+000-      |           ^~~~~~~~~~~~~~~~
+000-In file included from ../src/image_thresholding-host.cpp:26:
+000-../src/myled.h: At global scope:
+000/Image_Stitch/src/myled.h18-1-1'pmod' defined but not used [-Wunused-variable]1pmod../src/myled.h:18:27: warning: 'pmod' defined but not used [-Wunused-variable]
+000-   18 | static volatile uint32_t *pmod;
+000-      |                           ^~~~
+000/Image_Stitch/src/myled.h15-1-1'buttons' defined but not used [-Wunused-variable]1buttons../src/myled.h:15:27: warning: 'buttons' defined but not used [-Wunused-variable]
+000-   15 | static volatile uint32_t *buttons;
+000-      |                           ^~~~~~~
+000/Image_Stitch/src/myled.h12-1-1'leds' defined but not used [-Wunused-variable]1leds../src/myled.h:12:27: warning: 'leds' defined but not used [-Wunused-variable]
+000-   12 | static volatile uint32_t *leds;
+000-      |                           ^~~~
+000/Image_Stitch/Hardware0-1-1make: *** [makefile:53: src/image_thresholding-host.o] Error 12-make: *** [makefile:53: src/image_thresholding-host.o] Error 1
+00255-
+10:50:42 Build Finished (took 1s.985ms)
+
