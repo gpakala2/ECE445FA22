@@ -1,6 +1,6 @@
 # Gautam Worklog
 
-[[_TOC_]]
+[TOC]
 
 # 2022-09-14 - Initial Design Idea Discussion
 
