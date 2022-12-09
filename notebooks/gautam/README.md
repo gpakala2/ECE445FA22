@@ -22,7 +22,7 @@ There are multiple methods of keypoint detection I found. SURF, SIFT, and FAST. 
 
 [ORB Process Article](https://medium.com/@deepanshut041/introduction-to-orb-oriented-fast-and-rotated-brief-4220e8ec40cf)  
 
-FAST uses a circle of comparisons of the greyscale values around a pixel, rather than SIFT and SURF which are series of convolutions. FAST is much easier to accelerate.
+FAST uses a circle of comparisons of the greyscale values around a pixel with respect to a threshold number, rather than SIFT and SURF which are series of convolutions, FAST is much easier to accelerate.
 
 ![](FAST.jpg)
 
@@ -43,8 +43,61 @@ The last step in the process is blending. This simply involves matrix multiplyin
  
 # 2022-10-06 - Vitis Library Environment Set Up
 
-# 2022-10-22 - Image Overlay Process
+Since, we had a Xilinx board, I chose to find a library API that could incorporate computer vision acceleration. I found the Xilinx Vitis Vision reference that is linked below.
+
+[Vitis Vision API](https://xilinx.github.io/Vitis_Libraries/vision/2022.1/api-reference.html)  
+
+The Vitis environment provided Library functions that allowed me to create an acceleration wrapper for the FAST acceleration function.
+
+```
+void fast_accel(ap_uint<INPUT_PTR_WIDTH>* img_in, unsigned char threshold, ap_uint<OUTPUT_PTR_WIDTH>* img_out, int rows, int cols) {
+
+    #pragma HLS INTERFACE m_axi      port=img_in        offset=slave  bundle=gmem0 depth=__XF_DEPTH_1
+    #pragma HLS INTERFACE m_axi      port=img_out       offset=slave  bundle=gmem1 depth=__XF_DEPTH_1
+    #pragma HLS INTERFACE s_axilite  port=rows 			          
+	#pragma HLS INTERFACE s_axilite  port=cols			  
+    #pragma HLS INTERFACE s_axilite  port=return
+
+    xf::cv::Mat<TYPE, HEIGHT, WIDTH, NPC1, XF_CV_DEPTH_IN_1> in_mat(rows, cols);
+    xf::cv::Mat<TYPE, HEIGHT, WIDTH, NPC1, XF_CV_DEPTH_OUT_1> out_mat(rows, cols);
+
+    #pragma HLS DATAFLOW
+
+    xf::cv::Array2xfMat<INPUT_PTR_WIDTH, TYPE, HEIGHT, WIDTH, NPC1, XF_CV_DEPTH_IN_1>(img_in, in_mat);
+
+    xf::cv::fast<NMS, TYPE, HEIGHT, WIDTH, NPC1, XF_CV_DEPTH_IN_1, XF_CV_DEPTH_OUT_1>(in_mat, out_mat, threshold);
+
+    xf::cv::xfMat2Array<OUTPUT_PTR_WIDTH, TYPE, HEIGHT, WIDTH, NPC1, XF_CV_DEPTH_OUT_1>(out_mat, img_out);
+
+    return;
+}
+```
+
+This function allowed me to interface with the software through the AXI communication protocol which is an industry standard communication protocol between devices and CPU hosts. M_axi is a process of transferring multiple bytes through a stream, vs s_axi which transfers bytes to control registers for the accelerator. The wrapper Array-Mat functions convert the data between the openCV library format and the Vitis Vision format. Vitis required that parameters were set for the function defining the process.
+
+```
+#define WIDTH 1440
+#define HEIGHT 1080
+
+#define TYPE XF_8UC1
+#define CH_TYPE XF_GRAY
+
+#define NPC1 XF_NPPC8
+
+#define INPUT_PTR_WIDTH 256
+#define OUTPUT_PTR_WIDTH 256
+
+#define NMS 1
+#define XF_CV_DEPTH_IN_1 1
+#define XF_CV_DEPTH_OUT_1 1
+
+
+static const int MAX_KEYPOINTS = 1100;
+```
+
+The MAX_KEYPOINTS, WIDTH, HEIGHT variables determine max keypoints detected from image, width, and height of image respectively. The inpu/output pointer widths were chosen based on the recommendations from the library API. The other defines simply defined that the given image was in gray scale. This is due to the fact the FAST algorithm only processes grayscale images. 
+
+# 2022-10-25 - Image Overlay Process
 
 # 2022-11-10 - OpenCL Testing
-
 
