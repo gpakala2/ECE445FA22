@@ -41,13 +41,24 @@ The homography matrix determines how to warp the query image into the reference 
 **Image Warp:**
 The last step in the process is blending. This simply involves matrix multiplying the homography matrix across the image. I thought this would be extremely easy to accelerate using a systolic array matrix multiplier to apply the transformation to the image.
  
-# 2022-10-06 - Vitis Library Environment Set Up
+# 2022-10-06 - Vitis Library Environment Set Up and Usage
 
 Since, we had a Xilinx board, I chose to find a library API that could incorporate computer vision acceleration. I found the Xilinx Vitis Vision reference that is linked below.
 
 [Vitis Vision API](https://xilinx.github.io/Vitis_Libraries/vision/2022.1/api-reference.html)  
 
-The Vitis environment provided Library functions that allowed me to create an acceleration wrapper for the FAST acceleration function.
+The set up of the Vitis 2020.2 environment for openCV and acceleration was a challenge. This environment required the opencv library to be compiled through the built in Vitis compiler for proper usage. After compilation, the environment required linker library flags that took several hours to discover. The flags are shown below. Each of these flags are library indicators for specific openCV computer vision libraries, such as features2d for 2d image processing. The -L flag indicates the specific openCV library compiled by Vitis to take the library references from.  
+```
+-L/home/gautam/test/install/lib -lopencv_calib3d -lopencv_imgcodecs -lopencv_imgproc -lopencv_core -lopencv_highgui -lopencv_flann -lopencv_features2d
+```
+
+The Vitis library also required several compiler flags that took several more hours of research.
+```
+-D__SDSVHLS__ -I/home/gautam/test/Vitis_Libraries/vision/L1/include -I/home/gautam/test/install/include/opencv4/opencv2 -std=c++0x -fcf-protection=none
+```
+All of the -I indicators indicate where to pull C function references from for Vitis Vision and openCV. The rest of the flags specify high level synthesis in progress so that they don't inhibit the acceleration compilation.
+
+The Vitis environment provided library functions finally allowed me to create an acceleration wrapper for the FAST acceleration function.
 
 ```
 void fast_accel(ap_uint<INPUT_PTR_WIDTH>* img_in, unsigned char threshold, ap_uint<OUTPUT_PTR_WIDTH>* img_out, int rows, int cols) {
