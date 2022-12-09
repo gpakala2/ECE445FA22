@@ -2,9 +2,6 @@
 # Lab Notebook - Cole Herrmann
 - [Lab Notebook - Cole Herrmann](#lab-notebook---cole-herrmann)
 - [2022-09-14 - Initial Design Idea Discussion](#2022-09-14---initial-design-idea-discussion)
-- [Paste Your Document In Here](#paste-your-document-in-here)
-  - [And a table of contents](#and-a-table-of-contents)
-  - [On the right](#on-the-right)
 - [2022-09-21 - Trying to setup the environment](#2022-09-21---trying-to-setup-the-environment)
 - [2022-09-21 - Understanding the Petalinux Project Structure](#2022-09-21---understanding-the-petalinux-project-structure)
 - [2022-09-28 - DMA controllers are really complex](#2022-09-28---dma-controllers-are-really-complex)
@@ -18,17 +15,6 @@
 # 2022-09-14 - Initial Design Idea Discussion
 
 Today, our group met for the first time to begin the first step of the design process.  While I had been researching several different methods to stitch images on FPGAS, Gautam found the links below which seemed to be good references.
-
-# Paste Your Document In Here
-
-## And a table of contents
-
-will be generated
-
-## On the right
-
-side of this page.
-
 
 [https://github.com/tharaka27/SoCStitcher](https://github.com/tharaka27/SoCStitcher)  
 [OpenCV C++ Documentation](https://www.opencv-srf.com/2017/11/load-and-display-image.html)
