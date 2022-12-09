@@ -156,4 +156,21 @@ in_img2.copyTo(result(cv::Rect(in_img1.cols, in_img1.rows, in_img1.cols, in_img1
 This process takes the translated homography matrices and apply them respectively to the left and right images through cv::warpPerspective. From there the images are copied to the same frame. In the final frame the center image is overlayed in the middle to complete the panorama. The stitch occasionally seems to fail because of several petabytes of data being allocated which causes a memory overflow. This is generally impossible for a program this small, but I found online the compilation of the openCV library through Vitis can cause errors for the warpPerspective function. Due to this, the function will occasionally fail, but this only occurs on the computer instead of the FPGA, since the FPGA has a genuine version of openCV compiled rather than the Vitis version.
 
 # 2022-11-10 - OpenCL Testing
+We found that interfacing with the device was extremely difficult through the bare AXI interface. This interface had so many signals and was so complex with timing that it could be a 445 project. Instead we decided to use the OpenCL API to interface with the FPGA device. The process of OpenCL connections are abstracted through a queue that holds your tasks for the device, as shown in the image below.
 
+![](openclqueue.png)
+
+The OpenCL command queue is created through getting the context of the FPGA, then creating a FAST kernel and pushing that kernel into the queue.
+```
+cl::Context context(device);
+cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE);
+
+cl::Program program(context, devices, bins);
+cl::Kernel fast2(program,"fast_accel2");
+
+q.enqueueMigrateMemObjects({buffer_in},0);
+q.enqueueTask(fast2);
+q.enqueueMigrateMemObjects({buffer_out},CL_MIGRATE_MEM_OBJECT_HOST);
+q.finish();
+```
+The q.finish() ensures that all the tasks called before this function are finished before moving on. This method of interfacing with the FPGA saved us a lot of time and effort with creating an AXI protocol interface. 
