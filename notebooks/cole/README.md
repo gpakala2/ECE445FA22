@@ -7,6 +7,17 @@
 
 Today, our group met for the first time to begin the first step of the design process.  While I had been researching several different methods to stitch images on FPGAS, Gautam found the links below which seemed to be good references.
 
+# Paste Your Document In Here
+
+## And a table of contents
+
+will be generated
+
+## On the right
+
+side of this page.
+
+
 [https://github.com/tharaka27/SoCStitcher](https://github.com/tharaka27/SoCStitcher)  
 [OpenCV C++ Documentation](https://www.opencv-srf.com/2017/11/load-and-display-image.html)
 

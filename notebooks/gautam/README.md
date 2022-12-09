@@ -1,6 +1,10 @@
 # Gautam Worklog
-
-[TOC]
+- [Gautam Worklog](#gautam-worklog)
+- [2022-09-14 - Initial Design Idea Discussion](#2022-09-14---initial-design-idea-discussion)
+- [2022-09-20 - Search for Hardware Acceleration](#2022-09-20---search-for-hardware-acceleration)
+- [2022-10-06 - Vitis Library Environment Set Up and Usage](#2022-10-06---vitis-library-environment-set-up-and-usage)
+- [2022-10-25 - Image Overlay Process](#2022-10-25---image-overlay-process)
+- [2022-11-10 - OpenCL Testing](#2022-11-10---opencl-testing)
 
 # 2022-09-14 - Initial Design Idea Discussion
 Today, we discussed the idea of building an image stitcher. I looked into the basic idea image stitching and its workflow. I found a github of a software image stitching process with a library called opencv for computer vision algorithms.
