@@ -104,8 +104,56 @@ static const int MAX_KEYPOINTS = 1100;
 The MAX_KEYPOINTS, WIDTH, HEIGHT variables determine max keypoints detected from image, width, and height of image respectively. The inpu/output pointer widths were chosen based on the recommendations from the library API. The other defines simply defined that the given image was in gray scale. This is due to the fact the FAST algorithm only processes grayscale images. 
 
 # 2022-10-25 - Image Overlay Process
+Currently researching how to properly calculate homography and blend/overlay after matching. The matching processes takes in vectors of the descriptors per image, and matches them in a query and train order.
+```
+vector<cv::DMatch> good_matches_l, good_matches_r;
+cv::BFMatcher matcher = cv::BFMatcher(cv::NORM_L2, true);
 
+matcher.match(descriptors2, descriptors1, good_matches_l);
+matcher.match(descriptors2, descriptors3, good_matches_r);	
+```
+Unfortunately, this seems to have to be set in a proper order for homography.
+```
+cv::Mat H_l, H_r;
+vector< cv::Point2f > src_l, dest_l, src_r, dest_r;
 
+for (int i = 0; i < good_matches_l.size(); i++){
+    src_l.push_back(keypoints2[good_matches_l[i].queryIdx].pt);
+    dest_l.push_back(keypoints1[good_matches_l[i].trainIdx].pt);
+}
+for (int i = 0; i < good_matches_r.size(); i++){
+    src_r.push_back(keypoints2[good_matches_r[i].queryIdx].pt);
+    dest_r.push_back(keypoints3[good_matches_r[i].trainIdx].pt);
+}
+
+H_l = cv::findHomography(dest_l,src_l,cv::RANSAC, 5.0);
+H_r = cv::findHomography(dest_r,src_r,cv::RANSAC, 5.0);
+```
+Switching the destination and source variables causes the stitch to turn out completely wrong. I found after testing that this occurs from the ordering of images when matching descriptors. I found that the final image kept cutting out of the image as well, so I create a custom 3x3 translation matrix to warp the image to the center of the panorama frame. This way the final panorama shows up in the center of the screen.
+```
+double translation[] = { 1, 0, in_img1.cols,
+                         0, 1, in_img1.rows,
+                         0, 0, 1            };
+cv::Mat translation_matrix(3, 3, CV_64FC1, translation);
+
+cv::Mat H_fl = translation_matrix * H_l;
+cv::Mat H_fr = translation_matrix * H_r;
+
+cv::Mat result(in_img1.rows * 3, in_img1.cols * 3, CV_8UC1);
+cv::Mat result_r(in_img1.rows * 3, in_img1.cols * 3, CV_8UC1); //allocate memory for output gray image of fast accel
+cv::Mat test_l(cv::Size(in_img1.cols * 3, in_img1.rows * 3), CV_8UC1);
+cv::Mat test_r(cv::Size(in_img1.cols * 3, in_img1.rows * 3), CV_8UC1);
+
+in_img1.copyTo(test_l(cv::Rect(0, 0, in_img1.cols, in_img1.rows)));
+in_img3.copyTo(test_r(cv::Rect(0, 0, in_img1.cols, in_img1.rows)));
+
+cv::warpPerspective(test_l, result, H_fl, cv::Size(in_img1.cols * 3, in_img1.rows * 3));
+cv::warpPerspective(test_r, result_r, H_fr, cv::Size(in_img1.cols * 3, in_img1.rows * 3));
+
+result += result_r;
+in_img2.copyTo(result(cv::Rect(in_img1.cols, in_img1.rows, in_img1.cols, in_img1.rows)));
+```
+This process takes the translated homography matrices and apply them respectively to the left and right images through cv::warpPerspective. From there the images are copied to the same frame. In the final frame the center image is overlayed in the middle to complete the panorama. The stitch occasionally seems to fail because of several petabytes of data being allocated which causes a memory overflow. This is generally impossible for a program this small, but I found online the compilation of the openCV library through Vitis can cause errors for the warpPerspective function. Due to this, the function will occasionally fail, but this only occurs on the computer instead of the FPGA, since the FPGA has a genuine version of openCV compiled rather than the Vitis version.
 
 # 2022-11-10 - OpenCL Testing
 
