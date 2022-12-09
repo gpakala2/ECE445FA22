@@ -1,7 +1,19 @@
 
 # Lab Notebook - Cole Herrmann
-
-[TOC]
+- [Lab Notebook - Cole Herrmann](#lab-notebook---cole-herrmann)
+- [2022-09-14 - Initial Design Idea Discussion](#2022-09-14---initial-design-idea-discussion)
+- [Paste Your Document In Here](#paste-your-document-in-here)
+  - [And a table of contents](#and-a-table-of-contents)
+  - [On the right](#on-the-right)
+- [2022-09-21 - Trying to setup the environment](#2022-09-21---trying-to-setup-the-environment)
+- [2022-09-21 - Understanding the Petalinux Project Structure](#2022-09-21---understanding-the-petalinux-project-structure)
+- [2022-09-28 - DMA controllers are really complex](#2022-09-28---dma-controllers-are-really-complex)
+- [2022-10-14 - The Vivado Suite is very annoying to work with...](#2022-10-14---the-vivado-suite-is-very-annoying-to-work-with)
+- [2022-10-21 - Outsourcing to Udemy...](#2022-10-21---outsourcing-to-udemy)
+- [2022-10-21 - Using OpenCV to send and receive images from the FPGA](#2022-10-21---using-opencv-to-send-and-receive-images-from-the-fpga)
+- [2022-11-4 - Using OpenCV to create FGPA kernels.](#2022-11-4---using-opencv-to-create-fgpa-kernels)
+- [2022-11-14 - Creating the webserver.](#2022-11-14---creating-the-webserver)
+- [2022-11-28 - Camera problems](#2022-11-28---camera-problems)
 
 # 2022-09-14 - Initial Design Idea Discussion
 
